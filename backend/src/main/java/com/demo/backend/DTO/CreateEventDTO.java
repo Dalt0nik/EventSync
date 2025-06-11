@@ -1,12 +1,14 @@
 package com.demo.backend.DTO;
 
+import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
 
-import java.util.UUID;
-
 @Data
-public class EventDTO {
-    private UUID id;
+public class CreateEventDTO {
+
+    @NotBlank
     private String title;
+
+    @NotBlank
     private String description;
 }
