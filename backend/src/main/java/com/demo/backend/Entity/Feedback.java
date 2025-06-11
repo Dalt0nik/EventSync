@@ -1,9 +1,15 @@
 package com.demo.backend.Entity;
 
 import jakarta.persistence.*;
+import lombok.*;
 
 import java.util.UUID;
 
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 @Entity
 @Table(name = "feedback")
 public class Feedback {
@@ -21,6 +27,6 @@ public class Feedback {
     private Sentiment sentiment;
 
     @ManyToOne
-    @JoinColumn(name = "event", nullable = false)
+    @JoinColumn(name = "event_id", nullable = false)
     private Event event;
 }
