@@ -12,6 +12,5 @@ import java.util.UUID;
 public class FeedbackDTO {
     private UUID id;
     private String feedback;
-    private String summary;
     private Sentiment sentiment;
 }

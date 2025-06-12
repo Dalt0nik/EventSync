@@ -6,6 +6,7 @@ import com.demo.backend.DTO.EventDTO;
 import com.demo.backend.DTO.FeedbackDTO;
 import com.demo.backend.Entity.Event;
 import com.demo.backend.Entity.Feedback;
+import com.demo.backend.Entity.Sentiment;
 import com.demo.backend.exception.EntityNotFoundException;
 import com.demo.backend.repository.EventRepository;
 import com.demo.backend.repository.FeedbackRepository;
@@ -22,6 +23,8 @@ public class EventService {
     private final EventRepository eventRepository;
 
     private final FeedbackRepository feedbackRepository;
+
+    private final SentimentAnalysisService sentimentAnalysisService;
 
     public void createEvent(CreateEventDTO createEventDTO) {
         Event event = Event.builder()
@@ -44,8 +47,11 @@ public class EventService {
         Event event = eventRepository.findById(eventId)
                 .orElseThrow(() -> new EntityNotFoundException("Event with id " + eventId + " not found"));
 
+        Sentiment sentiment = sentimentAnalysisService.analyzeSentiment(createFeedbackDTO.getFeedback());
+
         Feedback feedback = Feedback.builder()
                 .feedback(createFeedbackDTO.getFeedback())
+                .sentiment(sentiment)
                 .event(event)
                 .build();
 
@@ -75,9 +81,6 @@ public class EventService {
         feedbackDTO.setId(feedback.getId());
         feedbackDTO.setFeedback(feedback.getFeedback());
 
-        if (feedback.getSummary() != null) {
-            feedbackDTO.setSummary(feedback.getSummary());
-        }
         if (feedback.getSentiment() != null) {
             feedbackDTO.setSentiment(feedback.getSentiment());
         }

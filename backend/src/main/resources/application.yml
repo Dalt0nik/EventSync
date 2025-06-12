@@ -21,6 +21,15 @@ spring:
       settings:
         web-allow-others: true
 
+# Hugging Face API Configuration
+huggingface:
+  api:
+    key: ${HUGGINGFACE_API_KEY}
+    base-url: https://api-inference.huggingface.co/models
+    model: cardiffnlp/twitter-roberta-base-sentiment
+    timeout: 30000
+    enabled: true
+
 server:
   port: 8080
 
@@ -51,12 +60,21 @@ spring:
     activate:
       on-profile: prod
 
+  datasource:
+    url: jdbc:h2:file:./data/backend
+
   jpa:
     show-sql: false
 
   h2:
     console:
       enabled: false
+
+# Production Hugging Face settings
+huggingface:
+  api:
+    timeout: 10000
+    enabled: true
 
 springdoc:
   swagger-ui:

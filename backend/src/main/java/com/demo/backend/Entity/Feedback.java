@@ -20,9 +20,6 @@ public class Feedback {
     @Column(length = 1000, nullable = false)
     private String feedback;
 
-    @Column(length = 100)
-    private String summary;
-
     @Column
     private Sentiment sentiment;
 
