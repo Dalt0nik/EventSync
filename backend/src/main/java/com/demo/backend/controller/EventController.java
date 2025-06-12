@@ -1,9 +1,6 @@
 package com.demo.backend.controller;
 
-import com.demo.backend.DTO.CreateEventDTO;
-import com.demo.backend.DTO.CreateFeedbackDTO;
-import com.demo.backend.DTO.EventDTO;
-import com.demo.backend.DTO.FeedbackDTO;
+import com.demo.backend.DTO.*;
 import com.demo.backend.service.EventService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -25,17 +22,22 @@ public class EventController {
     }
 
     @PostMapping
-    public void createEvent(@RequestBody @Valid CreateEventDTO createEventDTO) {
-        eventService.createEvent(createEventDTO);
+    public EventDTO createEvent(@RequestBody @Valid CreateEventDTO createEventDTO) {
+        return eventService.createEvent(createEventDTO);
     }
 
     @PostMapping("/{eventId}/feedback")
-    public void submitFeedback(@PathVariable UUID eventId, @RequestBody @Valid CreateFeedbackDTO createFeedbackDTO) {
-        eventService.createFeedback(eventId, createFeedbackDTO);
+    public FeedbackDTO submitFeedback(@PathVariable UUID eventId, @RequestBody @Valid CreateFeedbackDTO createFeedbackDTO) {
+        return eventService.createFeedback(eventId, createFeedbackDTO);
     }
 
     @GetMapping("/{eventId}/feedbacks")
     public List<FeedbackDTO> getFeedbacks(@PathVariable UUID eventId) {
         return eventService.getAllFeedbacks(eventId);
+    }
+
+    @GetMapping("/{eventId}/summary")
+    public EventSummaryDTO getEventSummary(@PathVariable UUID eventId) {
+        return eventService.getEventSummary(eventId);
     }
 }

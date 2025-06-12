@@ -3,6 +3,7 @@ package com.demo.backend.Entity;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.time.Instant;
 import java.util.UUID;
 
 @Getter
@@ -22,6 +23,9 @@ public class Feedback {
 
     @Column
     private Sentiment sentiment;
+
+    @Column(nullable = false)
+    private Instant timestamp = Instant.now();
 
     @ManyToOne
     @JoinColumn(name = "event_id", nullable = false)
