@@ -68,16 +68,10 @@ export const EventListPage = () => {
           </Typography>
         </Box>
       ) : (
-        <Grid container spacing={3}>
+        <Grid container spacing={3} sx={{ minWidth: 1200 }}>
           {events?.map((event) => (
             <Grid size={{ xs: 12, sm: 6, md: 4 }} key={event.id}>
-              <Card sx={{ 
-                height: '100%', 
-                display: 'flex', 
-                flexDirection: 'column',
-                maxWidth: 400,
-                margin: '0 auto'
-              }}>
+              <Card sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
                 <CardContent sx={{ flexGrow: 1 }}>
                   <Typography variant="h6" component="h2" gutterBottom>
                     {truncateText(event.title, 60)}
