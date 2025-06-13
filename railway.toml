@@ -1,9 +1,3 @@
-[build]
-builder = "dockerfile"
-
-[deploy]
-startCommand = "echo 'This will be overridden by individual services'"
-
 # Backend service configuration
 [[services]]
 name = "backend"
@@ -11,16 +5,13 @@ source = "backend"
 
 [services.build]
 builder = "dockerfile"
-dockerfilePath = "Dockerfile"
-
-[services.deploy]
-startCommand = "java $JAVA_OPTS -jar app.jar"
+dockerfilePath = "backend/Dockerfile"
 
 # Frontend service configuration  
 [[services]]
-name = "frontend"
+name = "frontend"  
 source = "frontend"
 
 [services.build]
 builder = "dockerfile"
-dockerfilePath = "Dockerfile"
+dockerfilePath = "frontend/Dockerfile"
