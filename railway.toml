@@ -1,0 +1,12 @@
+[project]
+name = "eventSync"
+
+[[service]]
+name = "backend"
+path = "backend"
+docker = true
+
+[[service]]
+name = "frontend"
+path = "frontend"
+docker = true
