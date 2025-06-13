@@ -2,11 +2,16 @@
 name = "eventSync"
 
 [[service]]
-name = "backend"
-path = "backend"
-docker = true
+# Backend service configuration
+name  = "backend"
+path  = "backend"
+build = "./mvnw -B package"
+start = "java -jar target/backend-0.0.1-SNAPSHOT.jar"
 
 [[service]]
-name = "frontend"
-path = "frontend"
-docker = true
+# Frontend service configuration
+name  = "frontend"
+path  = "frontend"
+build = "npm install"
+# Build and serve the Vite production preview on the dynamic Railway port
+start = "npm run build && npm run preview -- --host 0.0.0.0 --port $PORT"
