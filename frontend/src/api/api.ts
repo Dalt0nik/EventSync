@@ -2,12 +2,12 @@ import axios from "axios";
 
 // Determine the API base URL based on environment
 const getApiBaseUrl = () => {
-  // In production, API calls go through nginx proxy
-  if (import.meta.env.PROD) {
-    return "/api";
+  // Use environment variable in production
+  if (import.meta.env.VITE_API_URL) {
+    return import.meta.env.VITE_API_URL;
   }
   
-  // In development, default to localhost
+  // Fallback for development
   return "http://localhost:8080";
 };
 
