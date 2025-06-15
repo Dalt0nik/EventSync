@@ -15,6 +15,8 @@ This system provides:
 - [`frontend/`](frontend): React application with the user interface
 - [`backend/`](backend): Spring Boot application providing the API
 
+Deployment instructions for both services can be found in their directory README files. Deployment has to be performed starting from Backend.
+
 ## Tech stack
 
 ### Backend
