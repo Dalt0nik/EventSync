@@ -53,8 +53,16 @@ export const EventListPage = () => {
   }
 
   return (
-    <Container maxWidth="lg" sx={{ py: 4 }}>
-      <Typography variant="h4" component="h1" gutterBottom>
+    <Container maxWidth="lg" sx={{ py: 4, px: { xs: 2, sm: 3 } }}>
+      <Typography 
+        variant="h4" 
+        component="h1" 
+        gutterBottom
+        sx={{ 
+          fontSize: { xs: '1.75rem', sm: '2.125rem' },
+          textAlign: { xs: 'center', sm: 'left' }
+        }}
+      >
         Events
       </Typography>
       
@@ -68,23 +76,41 @@ export const EventListPage = () => {
           </Typography>
         </Box>
       ) : (
-        <Grid container spacing={3} sx={{ minWidth: 1200 }}>
+        <Grid container spacing={{ xs: 2, sm: 3 }} sx={{ minWidth: { md: '800px', lg: '1000px' } }}>
           {events?.map((event) => (
             <Grid size={{ xs: 12, sm: 6, md: 4 }} key={event.id}>
-              <Card sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
-                <CardContent sx={{ flexGrow: 1 }}>
-                  <Typography variant="h6" component="h2" gutterBottom>
+              <Card sx={{ 
+                height: '100%', 
+                display: 'flex', 
+                flexDirection: 'column',
+                mx: { xs: 0, sm: 'auto' }
+              }}>
+                <CardContent sx={{ flexGrow: 1, p: { xs: 2, sm: 2 } }}>
+                  <Typography 
+                    variant="h6" 
+                    component="h2" 
+                    gutterBottom
+                    sx={{ fontSize: { xs: '1.1rem', sm: '1.25rem' } }}
+                  >
                     {truncateText(event.title, 60)}
                   </Typography>
-                  <Typography variant="body2" color="text.secondary">
+                  <Typography 
+                    variant="body2" 
+                    color="text.secondary"
+                    sx={{ fontSize: { xs: '0.85rem', sm: '0.875rem' } }}
+                  >
                     {truncateText(event.description, 120)}
                   </Typography>
                 </CardContent>
-                <CardActions>
+                <CardActions sx={{ p: { xs: 2, sm: 2 }, pt: 0 }}>
                   <Button
                     size="small"
                     variant="contained"
                     onClick={() => navigate(`/events/${event.id}`)}
+                    sx={{ 
+                      fontSize: { xs: '0.8rem', sm: '0.875rem' },
+                      width: { xs: '100%', sm: 'auto' }
+                    }}
                   >
                     View Details
                   </Button>
@@ -98,7 +124,12 @@ export const EventListPage = () => {
       <Fab
         color="primary"
         aria-label="add"
-        sx={{ position: 'fixed', bottom: 16, right: 16 }}
+        sx={{ 
+          position: 'fixed', 
+          bottom: { xs: 24, sm: 16 }, 
+          right: { xs: 24, sm: 16 },
+          zIndex: 1000
+        }}
         onClick={() => setCreateDialogOpen(true)}
       >
         <Add />
